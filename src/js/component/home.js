@@ -1,10 +1,22 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { List } from "./list.js";
-//create your first component
+
 export function Home() {
 	const [tarea, setTarea] = useState([""]);
 	const [tareasPendientes, setTareasPendientes] = useState([]);
+	const [borrarID, setBorrarID] = useState([]);
 
+	const borrarIDElement = idelement => {
+		let newArray = [];
+		console.log("tus tareas eran" + tareasPendientes);
+		tareasPendientes.filter(function(element, i) {
+			if (i != idelement) {
+				newArray.push(element);
+			}
+		});
+		setTareasPendientes(newArray);
+		return console.log("Ahora tus tareas son:" + newArray);
+	};
 	const agregarTarea = e => {
 		e.preventDefault();
 		if (tarea != "") {
@@ -19,6 +31,9 @@ export function Home() {
 			<div className="row justify-content-center">
 				<div className="col-12 text-center">
 					<h1 className="text-primary">Tareas</h1>
+				</div>
+				<div className="col-12 text-center">
+					Tienes {tareasPendientes.length} tareas pendientes
 				</div>
 				<form onSubmit={agregarTarea} className="col-4">
 					{/* al apretar enter */}
@@ -36,12 +51,17 @@ export function Home() {
 					<ul className="list-group">
 						{/* Aqui el .map */}
 						{tareasPendientes.map((element, i) => {
-							return <List key={i} tareasPendientes={element} />;
+							return (
+								<List
+									key={i}
+									tareasPendientes={element}
+									idBorrar={i}
+									setBorrarID={setBorrarID}
+									borrarIDElement={borrarIDElement}
+								/>
+							);
 						})}
 					</ul>
-				</div>
-				<div className="col-12 text-center">
-					Tienes {tareasPendientes.length} tareas pendientes
 				</div>
 			</div>
 		</div>
