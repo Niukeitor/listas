@@ -2,15 +2,18 @@ import React, { useState } from "react";
 import { List } from "./list.js";
 //create your first component
 export function Home() {
-	const [tarea, setTarea] = useState([]);
+	const [tarea, setTarea] = useState([""]);
 	const [tareasPendientes, setTareasPendientes] = useState([]);
 
 	const agregarTarea = e => {
 		e.preventDefault();
-		setTareasPendientes([...tareasPendientes, tarea]);
-		console.log(tareasPendientes);
-		setTarea([""]);
+		if (tarea != "") {
+			setTareasPendientes([tarea, ...tareasPendientes]);
+			console.log(tareasPendientes);
+			setTarea([""]);
+		}
 	};
+
 	return (
 		<div className=" mt-5">
 			<div className="row justify-content-center">
@@ -36,6 +39,9 @@ export function Home() {
 							return <List key={i} tareasPendientes={element} />;
 						})}
 					</ul>
+				</div>
+				<div className="col-12 text-center">
+					Tienes {tareasPendientes.length} tareas pendientes
 				</div>
 			</div>
 		</div>
