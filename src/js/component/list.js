@@ -6,9 +6,7 @@ export function List(props) {
 	/* dentro del list pones el btn */
 	const [verBorrar, setVerBorrar] = useState("d-none");
 	return (
-		<li
-			onTouchMoveCapture={() => setVerBorrar("d-none")}
-			className="list-group-item d-flex justify-content-between">
+		<li className="list-group-item d-flex justify-content-between">
 			<p>{props.tareasPendientes}</p>
 			<div
 				onClick={() => props.borrarIDElement(props.idBorrar)}
@@ -21,6 +19,5 @@ export function List(props) {
 List.propTypes = {
 	tareasPendientes: PropTypes.string,
 	idBorrar: PropTypes.number,
-	setBorrarID: PropTypes.func,
 	borrarIDElement: PropTypes.func
 };

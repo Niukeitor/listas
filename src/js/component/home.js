@@ -4,7 +4,6 @@ import { List } from "./list.js";
 export function Home() {
 	const [tarea, setTarea] = useState([""]);
 	const [tareasPendientes, setTareasPendientes] = useState([]);
-	const [borrarID, setBorrarID] = useState([]);
 
 	const borrarIDElement = idelement => {
 		let newArray = [];
@@ -36,7 +35,6 @@ export function Home() {
 					Tienes {tareasPendientes.length} tareas pendientes
 				</div>
 				<form onSubmit={agregarTarea} className="col-4">
-					{/* al apretar enter */}
 					<input
 						type="text"
 						className="form-control mx-0"
@@ -56,7 +54,6 @@ export function Home() {
 									key={i}
 									tareasPendientes={element}
 									idBorrar={i}
-									setBorrarID={setBorrarID}
 									borrarIDElement={borrarIDElement}
 								/>
 							);
