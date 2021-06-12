@@ -7,20 +7,17 @@ export function Home() {
 
 	const borrarIDElement = idelement => {
 		let newArray = [];
-		console.log("tus tareas eran" + tareasPendientes);
 		tareasPendientes.filter(function(element, i) {
 			if (i != idelement) {
 				newArray.push(element);
 			}
 		});
 		setTareasPendientes(newArray);
-		return console.log("Ahora tus tareas son:" + newArray);
 	};
 	const agregarTarea = e => {
 		e.preventDefault();
 		if (tarea != "") {
 			setTareasPendientes([tarea, ...tareasPendientes]);
-			console.log(tareasPendientes);
 			setTarea([""]);
 		}
 	};
@@ -29,10 +26,7 @@ export function Home() {
 		<div className=" mt-5">
 			<div className="row justify-content-center">
 				<div className="col-12 text-center">
-					<h1 className="text-primary">Tareas</h1>
-				</div>
-				<div className="col-12 text-center">
-					Tienes {tareasPendientes.length} tareas pendientes
+					<h1 className="text-success">Cartas</h1>
 				</div>
 				<form onSubmit={agregarTarea} className="col-4">
 					<input
@@ -47,7 +41,7 @@ export function Home() {
 			<div className="row justify-content-center">
 				<div className="col-4">
 					<ul className="list-group">
-						{/* Aqui el .map */}
+						{}
 						{tareasPendientes.map((element, i) => {
 							return (
 								<List
